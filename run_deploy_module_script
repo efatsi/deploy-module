@@ -1,0 +1,11 @@
+#! /bin/bash
+. /usr/local/opt/chruby/share/chruby/chruby.sh
+chruby ruby-1.9.3
+
+# Kill existing plow.rb instances
+# for X in `ps aux | grep deploy_watcher.rb $1 | awk {'print $2'}`; do kill $X; done
+
+# need to cd to the proper directory for
+# relative path reasons in the ruby code
+cd /Applications/deploy-module
+ruby deploy_watcher.rb
