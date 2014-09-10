@@ -19,14 +19,15 @@ while(true) do
   message = sp.gets
   message.chomp!
 
-  puts message
+  puts "Deploying!!"
+
   from, to = message.match(/Deploying - From:(\d+) To:(\d)/).captures.map(&:to_i)
 
   from_branch = get_branch(from)
   to_branch   = TO_BRANCHES[to - 1]
 
-  puts from_branch
-  puts to_branch
+  puts "From: #{from_branch}"
+  puts "To:   #{to_branch}"
 
   filepath = `pwd`.strip + "/deploy.sh"
   puts `#{filepath} #{from_branch} #{to_branch}`

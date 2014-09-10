@@ -9,15 +9,25 @@ cd /Users/efatsi/Desktop/Projects/shure
 echo "Running: git checkout $1"
 git fetch
 git checkout $1
+
 echo "Running: git pull --rebase origin $1"
 git pull --rebase origin $1
+
 echo "Running: git checkout $2"
 git checkout $2
+
 echo "Running: git reset --hard $1"
 git reset --hard $1
+
 echo "Running: git push origin $2 -f"
 git push origin $2 -f
+
 echo "Running: bundle install"
 bundle install
+
 echo "Running: bundle exec cap $2 deploy:migrations"
-bundle exec cap $2 deploy:migrations
+if [ "$2" = "feature_staging" ]; then
+  bundle exec cap $2 deploy:migrations -sbranch=origin/$2
+else
+  bundle exec cap $2 deploy:migrations
+fi
