@@ -7,11 +7,12 @@ echo "cd-ing into Shure directory"
 cd /Users/efatsi/Desktop/Projects/shure
 
 echo "Running: git checkout $1"
-git checkout -b $1; git checkout $1
+git fetch
+git checkout $1
 echo "Running: git pull --rebase origin $1"
 git pull --rebase origin $1
 echo "Running: git checkout $2"
-git checkout -b $2; git checkout $2
+git checkout $2
 echo "Running: git reset --hard $1"
 git reset --hard $1
 echo "Running: git push origin $2 -f"
