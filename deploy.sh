@@ -25,9 +25,5 @@ git push origin $2 -f
 echo "Running: bundle install"
 bundle install
 
-echo "Running: bundle exec cap $2 deploy:migrations"
-if [ "$2" = "feature_staging" ]; then
-  bundle exec cap $2 deploy:migrations -sbranch=origin/$2
-else
-  bundle exec cap $2 deploy:migrations
-fi
+echo "Running: bundle exec cap $2 deploy"
+bundle exec cap $2 deploy
